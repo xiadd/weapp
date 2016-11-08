@@ -5,6 +5,7 @@ var sass = require('gulp-sass')
 var rename = require('gulp-rename')
 var yaml = require('gulp-yaml')
 var babel = require('gulp-babel')
+var imagemin = require('gulp-imagemin');
 
 gulp.task('wxml', function () {
   gulp.src('./app/**/*.html')
@@ -37,6 +38,15 @@ gulp.task('js', function () {
   .pipe(gulp.dest('build'))
 })
 
+gulp.task('image', function () {
+  gulp.src(['./app/**/*.jpg', './app/**/*.png'])
+  .pipe(imagemin())
+  .pipe(gulp.dest('build'))
+})
+
 gulp.task('default', ['wxml', 'sass', 'yml', 'js'], function () {
-  gulp.watch(['./app/**/*.wxml', './app/**/*.scss', './app/**/*.yml', './app/**/*.js'], ['wxml', 'sass', 'yml', 'js'])
+  gulp.watch('./app/**/*.html', ['wxml'])
+  gulp.watch('./app/**/*.scss', ['sass'])
+  gulp.watch('./app/**/*.yml', ['yml'])
+  gulp.watch('./app/**/*.js', ['js'])
 })
