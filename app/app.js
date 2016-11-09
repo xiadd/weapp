@@ -18,8 +18,14 @@ App({
             success: function (res) {
               that.globalData.userInfo = res.userInfo
               typeof cb == "function" && cb(that.globalData.userInfo)
+            },
+            fail: function (err) {
+              console.log(err)
             }
           })
+        },
+        fail: function (err) {
+          console.log(err)
         }
       })
     }

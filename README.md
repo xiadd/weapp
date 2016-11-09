@@ -1,5 +1,27 @@
-## 个人开发使用的微信小程序模板
+# 接口
 
-`gulp`
+## 首页
 
-将build目录作为小程序的源码目录
+1. slide images
+
+2. categories
+
+3. categories + categories.mainItems(5 or 6)
+
+放到一个接口里
+
+```
+{
+  slides: [
+    ...imgUrls
+  ],
+  categories: [
+    {
+      cateName
+      cateId
+      cateIcon
+      [...cateItems]
+    }
+  ]
+}
+```
