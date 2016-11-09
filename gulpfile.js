@@ -40,7 +40,7 @@ gulp.task('js', function () {
 
 gulp.task('image', function () {
   gulp.src(['./app/**/*.png', './app/**/*.jpg'])
-  .pipe(image ())
+  .pipe(image())
   .pipe(gulp.dest('build'))
 })
 
@@ -49,5 +49,4 @@ gulp.task('default', ['wxml', 'sass', 'yml', 'js'], function () {
   gulp.watch('./app/**/*.scss', ['sass'])
   gulp.watch('./app/**/*.yml', ['yml'])
   gulp.watch('./app/**/*.js', ['js'])
-  //gulp.watch(['./app/**/*.png', './app/**/*.jpg'], ['image'])
 })
