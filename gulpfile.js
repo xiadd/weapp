@@ -1,11 +1,10 @@
 var gulp = require('gulp')
-var yaml = require('js-yaml')
 var fs = require('fs')
 var sass = require('gulp-sass')
 var rename = require('gulp-rename')
 var yaml = require('gulp-yaml')
 var babel = require('gulp-babel')
-var image  = require('gulp-image');
+var imagemin = require('gulp-imagemin')
 
 gulp.task('wxml', function () {
   gulp.src('./app/**/*.html')
@@ -39,14 +38,15 @@ gulp.task('js', function () {
 })
 
 gulp.task('image', function () {
-  gulp.src(['./app/**/*.png', './app/**/*.jpg'])
-  .pipe(image())
+  gulp.src('./app/**/*')
+  .pipe(imagemin())
   .pipe(gulp.dest('build'))
 })
 
-gulp.task('default', ['wxml', 'sass', 'yml', 'js'], function () {
+gulp.task('default', ['wxml', 'sass', 'yml', 'js', 'image'], function () {
   gulp.watch('./app/**/*.html', ['wxml'])
   gulp.watch('./app/**/*.scss', ['sass'])
   gulp.watch('./app/**/*.yml', ['yml'])
   gulp.watch('./app/**/*.js', ['js'])
+  gulp.watch('./app/**/*', ['image'])
 })
